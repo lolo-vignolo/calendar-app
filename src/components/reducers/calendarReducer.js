@@ -56,7 +56,7 @@ export const calendarReducer = (state = initialState, action)=>{
             return{
                 ...state,
                 events: state.events.filter(
-                    e => (e.id !== state.activeEvent.id),
+                    e => (e._id !== state.activeEvent._id),
                     ),
                     activeEvent : null
 
@@ -67,6 +67,12 @@ export const calendarReducer = (state = initialState, action)=>{
                 ...state,
                 events: [ ...action.payload ]
             }
+
+            case types.eventLogout:
+                return{
+                    
+                   ...initialState
+                } 
 
            
           

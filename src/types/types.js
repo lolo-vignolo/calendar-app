@@ -28,7 +28,7 @@ export const types = {
 
     eventLoaded :  "[event] Event Loaded",
 
-    
+    eventLogout: "[event] Event logout"
 
 
 } 

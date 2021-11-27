@@ -2,6 +2,7 @@
 import Swal from "sweetalert2";
 import { fetchSinToken, fetchConToken } from "../helpers/fetch";
 import { types } from "../types/types";
+import { eventLogout } from "./events";
 
 /* este es el body (res:)
 name: "Lorenzo"
@@ -106,6 +107,7 @@ const login = (user)=> ({
 export const startLogout = () => {
     return (dispatch) => {
         localStorage.clear();
+        dispatch(eventLogout())
         dispatch(logout());
 
     }
@@ -114,6 +116,8 @@ export const startLogout = () => {
 
 
 const logout = () =>({
-    type:types.authLogout
+    type:types.authLogout,
+    
 })
+
 

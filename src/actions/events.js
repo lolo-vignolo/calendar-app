@@ -87,7 +87,7 @@ export const eventSatrtUpdatedEvent = (event) => {
     return async (dispatch) => {
 
        
-        const myEvent = event.id
+        const myEvent = event._id
         console.log(myEvent);
         
         try {
@@ -121,43 +121,85 @@ const updatedEvent = (event) => ({
 
 
 
-export const delatedEvent = () =>{
-    return {
-       // type: types.delatedEvent,
-    }
-
-}
-
 export const eventStartLoging = () =>{
     return async (dispatch) => {
 
         try {
-
+            
             //para esta petición get no debo paras ninguna info, si no lo veo claro mirar PostMan
             const resp = await fetchConToken ( "events" );
             const body = await resp.json();
-            console.log(body);
+            console.log(body.events);
 
             const events = prepareEvents (body.events);
           
             
             dispatch(eventLoaded(events));
-
+            
             console.log(events);
    
-
+            
         } catch (error) {
             
             console.log(error);
-    
-            }
+            
+        }
    
-}
+    }
 }
 
 const eventLoaded = (events) =>({
    
-        type:types.eventLoaded,
+    type:types.eventLoaded,
         payload:events 
 })
 
+
+
+export const eventDeleted = () => {
+    return async (dispatch, getState) =>{
+
+        const {_id}  = getState().calendar.activeEvent;
+
+        console.log(_id);
+        
+        try {
+            const resp = await fetchConToken (`events/${_id}`, {}, "DELETE");
+            const body = await resp.json();
+
+                if (body.ok){
+          
+                    dispatch ( delatedEvent ());
+
+                }else{
+                    Swal.fire("Error", body.msg , "error" ) ;
+                }
+            
+        } catch (error) {
+            
+        console.log(error);
+
+        }
+
+
+
+    }
+}
+
+
+
+const delatedEvent = () =>{
+    return {
+       type: types.delatedEvent,
+    }
+
+}
+
+
+export const eventLogout = () =>({
+    
+    type: types.eventLogout,
+    
+   
+
+})
