@@ -8,6 +8,8 @@ const fetchSinToken = (endpoint, data, method = "GET") =>{
 
     const url = `${baseUrl}/${endpoint}`; //localhost:4000/api/auth or event...
 
+
+    console.log(url);
     if (method==="GET"){
         return fetch (url)
     } else {

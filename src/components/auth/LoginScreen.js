@@ -12,17 +12,17 @@ export const LoginScreen = () => {
     const dispatch = useDispatch();
     
     const [formLoginValues , handleLoginInputChange] = useForm({
-        lEmail: "vignolo_3@hotmail.com",
-        lPassword : "Elmejormate123#",
+        lEmail: "",
+        lPassword : "",
     });
 
     const {lEmail, lPassword} = formLoginValues;
 
     const [formRegisterValues , handleRegisterInputChange] = useForm({
-        rName: "Lorenzo Vignolo",
-        rEmail: "vignolo_3@hotmail.com",
-        rPassword : "Elmejormate123#",
-        rRepeatPassword: "Elmejormate123#"
+        rName: "",
+        rEmail: "",
+        rPassword : "",
+        rRepeatPassword: ""
 
     });
 
